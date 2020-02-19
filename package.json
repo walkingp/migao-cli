@@ -1,0 +1,31 @@
+{
+  "name": "migao-cli",
+  "version": "1.0.1",
+  "description": "A vue scaffold client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walkingp/migao-cli.git"
+  },
+  "author": "walkingp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/walkingp/migao-cli/issues"
+  },
+  "homepage": "https://github.com/walkingp/migao-cli#readme",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "commander": "^4.1.1",
+    "download-git-repo": "^3.0.2",
+    "handlebars": "^4.7.3",
+    "inquirer": "^7.0.4",
+    "log-symbols": "^3.0.0",
+    "ora": "^4.0.3"
+  },
+  "bin": {
+    "migao-cli": "index.js"
+  }
+}
