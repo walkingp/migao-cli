@@ -13,7 +13,10 @@ const logSymbols = require("log-symbols");
 
 const gitRepo = {
   url: "https://github.com/walkingp/migao-cms",
-  downUrl: "http://github.com:walkingp/migao-cms#master",
+  downUrl: {
+    Vue: "http://github.com:walkingp/migao-cms#master",
+    React: "http://github.com:walkingp/migao-cli-template#react"
+  },
   description:
     "A website content management system based on Vue.js + typescript + elemnet."
 };
@@ -33,15 +36,6 @@ const step1Func = () => {
       }
     ])
     .then(answer => {
-      if (answer.lang === "React") {
-        console.log(
-          logSymbols.warning,
-          chalk.yellow(
-            "Sorry, React project is still in working, please check out more in https://migao.io."
-          )
-        );
-        return;
-      }
       step2Func(answer.lang);
     });
 };
@@ -76,7 +70,7 @@ const step2Func = lang => {
     ])
     .then(answer => {
       const { projectName } = answer;
-      step3Func(projectName, answer);
+      step3Func(lang, projectName, answer);
     });
 };
 
@@ -97,7 +91,7 @@ const deleteAll = path => {
   }
 };
 
-const step3Func = async (projectName, answer) => {
+const step3Func = async (lang, projectName, answer) => {
   // check if folder exists
   await fs.exists(projectName, exist => {
     if (exist) {
@@ -111,7 +105,7 @@ const step3Func = async (projectName, answer) => {
       const spinner = ora("Initaling project, please wait...");
       spinner.start();
       download(
-        gitRepo.downUrl,
+        gitRepo.downUrl[lang],
         projectName,
         {
           clone: true
